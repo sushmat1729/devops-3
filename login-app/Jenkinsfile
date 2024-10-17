@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository from GitHub
+                git url: 'https://github.com/sushmat1729/devops-3.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                // Install Node.js dependencies
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run tests, if you have any
+                sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Run the build step, if your project has a build process
+                sh 'npm run build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Deploy the application, for example, start the Node.js server
+                sh 'npm start'
+            }
+        }
+    }
+}
